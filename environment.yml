@@ -4,6 +4,7 @@ channels:
 dependencies:
   - coffea
   - jupyterlab
+  - ipywidgets
   - ndcctools
   - python=3.9
 prefix: /afs/crc.nd.edu/user/b/btovar/usr/x86_64/redhat7/miniconda3/envs/coffea-wq-notebook
