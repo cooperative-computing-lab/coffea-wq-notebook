@@ -1,13 +1,9 @@
-name: example-environment
+name: coffea-wq-notebook
 channels:
   - conda-forge
 dependencies:
-  - numpy
-  - psutil
-  - toolz
-  - matplotlib
-  - dill
-  - pandas
-  - partd
-  - bokeh
-  - dask
+  - coffea
+  - jupyterlab
+  - ndcctools
+  - python=3.9
+prefix: /afs/crc.nd.edu/user/b/btovar/usr/x86_64/redhat7/miniconda3/envs/coffea-wq-notebook
