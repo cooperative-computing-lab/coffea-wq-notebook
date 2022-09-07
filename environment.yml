@@ -6,6 +6,7 @@ dependencies:
   - coffea=0.7.18
   - ndcctools=7.4.13
   - conda
-  - jupyterlab
-  - ipywidgets
+  # uncomment for local testing:
+  #- jupyterlab
+  #- ipywidgets
 prefix: /afs/crc.nd.edu/user/b/btovar/usr/x86_64/redhat7/miniconda3/envs/coffea-wq-pyhep-2022
