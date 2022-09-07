@@ -1,11 +1,11 @@
-name: coffea-wq-notebook
+name: coffea-wq-pyhep-2022
 channels:
   - conda-forge
 dependencies:
-  - coffea
+  - python=3.9
+  - coffea=0.7.18
+  - ndcctools=7.4.13
+  - conda
   - jupyterlab
   - ipywidgets
-  - ndcctools
-  - conda
-  - python=3.9
-prefix: /afs/crc.nd.edu/user/b/btovar/usr/x86_64/redhat7/miniconda3/envs/coffea-wq-notebook
+prefix: /afs/crc.nd.edu/user/b/btovar/usr/x86_64/redhat7/miniconda3/envs/coffea-wq-pyhep-2022

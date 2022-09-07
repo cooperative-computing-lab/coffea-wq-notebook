@@ -1,28 +1,19 @@
-from coffea import hist, processor
+from coffea import processor
+import hist
 import awkward as ak
 import numpy as np
 from coffea.nanoevents.methods import vector
+from collections import defaultdict
+import time
 
 
 class MemNanoTestProcessor(processor.ProcessorABC):
     def __init__(self, columns=[]):
         self._columns = columns
-        dataset_axis = hist.Cat("dataset", "Primary dataset")
-        mass_axis = hist.Bin("mass", r"$m_{\mu\mu}$ [GeV]", 30000, 0.25, 300)
-        pt_axis = hist.Bin("pt", r"$p_{T}$ [GeV]", 30000, 0.25, 300)
-
         self.expected_usermeta = {
             "ZJets": ("someusermeta", "hello"),
             "Data": ("someusermeta2", "world"),
         }
-
-        self._accumulator = processor.dict_accumulator(
-            {
-                "mass": hist.Hist("Counts", dataset_axis, mass_axis),
-                "pt": hist.Hist("Counts", dataset_axis, pt_axis),
-                "cutflow": processor.defaultdict_accumulator(int),
-            }
-        )
 
     @property
     def columns(self):
@@ -30,11 +21,28 @@ class MemNanoTestProcessor(processor.ProcessorABC):
 
     @property
     def accumulator(self):
-        return self._accumulator
+        dataset_axis = hist.axis.StrCategory(
+            [], growth=True, name="dataset", label="Primary dataset"
+        )
+        mass_axis = hist.axis.Regular(
+            30000, 0.25, 300, name="mass", label=r"$m_{\mu\mu}$ [GeV]"
+        )
+        pt_axis = hist.axis.Regular(30000, 0.24, 300, name="pt", label=r"$p_{T}$ [GeV]")
+
+        accumulator = {
+            # replace when py3.6 is dropped
+            # "mass": hist.Hist(dataset_axis, mass_axis, name="Counts"),
+            # "pt": hist.Hist(dataset_axis, pt_axis, name="Counts"),
+            "mass": hist.Hist(dataset_axis, mass_axis),
+            "pt": hist.Hist(dataset_axis, pt_axis),
+            "cutflow": defaultdict(int),
+        }
+
+        return accumulator
 
     def process(self, df):
         ak.behavior.update(vector.behavior)
-        output = self.accumulator.identity()
+        output = self.accumulator
 
         dataset = df.metadata["dataset"]
         if "checkusermeta" in df.metadata:
@@ -59,8 +67,9 @@ class MemNanoTestProcessor(processor.ProcessorABC):
         output["cutflow"]["%s_pt" % dataset] += np.sum(ak.num(muon))
         output["cutflow"]["%s_mass" % dataset] += np.sum(ak.num(dimuon))
 
+        # artificially increase time and memory of this simple example to show
+        # resource allocation capabilities.
         big_mem = ak.count(muon) * 1024 * 2 * "A"
-        import time
         time.sleep(5)
 
         return output
