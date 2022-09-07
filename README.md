@@ -1,8 +1,7 @@
 # Using Coffea with the WorkQueueExecutor Tutorial
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cooperative-computing-lab/coffea-wq-notebook/final-talk?labpath=index.ipynb)
+Access this tutorial in Google ColabBinder by the following URL:
 
-Access this tutorial Binder by clicking the blue badge above or at the following URL:
+https://colab.research.google.com/github/cooperative-computing-lab/coffea-wq-notebook/blob/final-talk/index.ipynb
 
-https://mybinder.org/v2/gh/cooperative-computing-lab/coffea-wq-notebook/final-talk?labpath=index.ipyn
 
