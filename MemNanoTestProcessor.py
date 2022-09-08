@@ -69,7 +69,7 @@ class MemNanoTestProcessor(processor.ProcessorABC):
 
         # artificially increase time and memory of this simple example to show
         # resource allocation capabilities.
-        big_mem = ak.count(muon) * 1024 * 2 * "A"
+        big_mem = ak.count(muon) * 1024 * "A"
         time.sleep(5)
 
         return output
