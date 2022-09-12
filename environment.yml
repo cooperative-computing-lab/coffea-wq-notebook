@@ -4,7 +4,7 @@ channels:
 dependencies:
   - python=3.9
   - coffea=0.7.18
-  - ndcctools=7.4.13
+  - ndcctools=7.4.14
   - conda
   # uncomment for local testing:
   #- jupyterlab
