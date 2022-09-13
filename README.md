@@ -9,3 +9,6 @@ Or Google colab:
 https://colab.research.google.com/github/cooperative-computing-lab/coffea-wq-notebook/blob/latest/index.ipynb
 
 
+
+
+[![DOI](https://zenodo.org/badge/518830455.svg)](https://zenodo.org/badge/latestdoi/518830455)
